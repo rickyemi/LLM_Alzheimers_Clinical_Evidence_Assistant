@@ -1,0 +1,45 @@
+# =============================================================================
+# Central configuration for the AD Clinical Evidence Assistant.
+# Every value can be overridden by an environment variable (see config.py):
+#   AD_RAG_EMBEDDING_BACKEND, AD_RAG_LLM_BACKEND, ANTHROPIC_MODEL,
+#   AD_RAG_ALLOW_NETWORK_TOOLS, AD_RAG_HOME
+# =============================================================================
+project: ad-clinical-evidence-assistant
+
+paths:
+  corpus_dir: data/raw                 # curated source documents
+  index_dir: artifacts/index           # persisted vector index + manifest
+  audit_log: artifacts/audit/audit.jsonl
+  review_queue: artifacts/review_queue.jsonl
+  briefs_dir: artifacts/briefs
+  trials_fixture: data/fixtures/trials_sample.json
+  biomarker_cutoffs: configs/biomarker_cutoffs.yaml
+
+embedding:
+  backend: hashing                     # hashing (offline, no download) | sentence-transformers
+  model: sentence-transformers/all-MiniLM-L6-v2
+  hashing_features: 4096
+
+chunking:
+  size_chars: 900                      # about 200 tokens; tuned in notebook 02
+  overlap_chars: 150
+
+retrieval:
+  top_k: 4
+  min_similarity: 0.16                 # guardrail: below this we refuse (midpoint calibration in notebook 03)
+
+llm:
+  backend: extractive                  # extractive (offline) | anthropic
+  model: claude-sonnet-5-5             # override with ANTHROPIC_MODEL
+  max_tokens: 800
+  temperature: null                    # null = omit the parameter (some models fix it)
+
+agent:
+  max_steps: 6                         # hard stop on the tool loop
+  max_calls_per_tool: 2                # prevents runaway repeated calls
+  allow_network_tools: false           # false = ClinicalTrials.gov tool uses the offline fixture
+
+monitoring:
+  drift_window: 200
+  ungrounded_rate_alert: 0.25
+  score_drop_alert: 0.15

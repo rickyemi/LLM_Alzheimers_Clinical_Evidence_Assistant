@@ -1,0 +1,25 @@
+{
+  "disclaimer": "SYNTHETIC placeholder trials for offline demos. Not real registry records.",
+  "trials": [
+    {
+      "nct_id": "SYNTH-0001",
+      "title": "Synthetic: Blood biomarker triage in primary care",
+      "status": "RECRUITING"
+    },
+    {
+      "nct_id": "SYNTH-0002",
+      "title": "Synthetic: Confirmatory plasma testing in memory clinics",
+      "status": "RECRUITING"
+    },
+    {
+      "nct_id": "SYNTH-0003",
+      "title": "Synthetic: Digital cognitive screening cohort",
+      "status": "RECRUITING"
+    },
+    {
+      "nct_id": "SYNTH-0004",
+      "title": "Synthetic: Retrospective assay concordance study",
+      "status": "COMPLETED"
+    }
+  ]
+}

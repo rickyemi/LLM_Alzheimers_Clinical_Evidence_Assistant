@@ -1,0 +1,37 @@
+# docker compose up --build                       -> API on :8000
+# docker compose --profile monitoring up          -> + Prometheus on :9090
+# docker compose --profile notebooks up           -> + JupyterLab on :8888
+services:
+  api:
+    build: .
+    image: ad-rag:0.1.0
+    ports: ["8000:8000"]
+    env_file:
+      - path: .env            # optional; copy .env.example to .env
+        required: false
+    environment:
+      AD_RAG_LLM_BACKEND: ${AD_RAG_LLM_BACKEND:-extractive}
+    volumes:
+      - audit-data:/app/artifacts   # persist index, audit log, review queue
+    restart: unless-stopped
+
+  prometheus:
+    image: prom/prometheus:v2.53.0
+    profiles: ["monitoring"]
+    ports: ["9090:9090"]
+    volumes:
+      - ./deploy/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+    depends_on: [api]
+
+  jupyter:
+    image: python:3.11-slim
+    profiles: ["notebooks"]
+    working_dir: /work
+    volumes: [".:/work"]
+    ports: ["8888:8888"]
+    command: >
+      bash -c "pip install -q -e '.[notebooks]' jupyterlab &&
+      jupyter lab --ip=0.0.0.0 --no-browser --allow-root --ServerApp.token=''"
+
+volumes:
+  audit-data:

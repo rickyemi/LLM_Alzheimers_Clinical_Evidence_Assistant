@@ -1,0 +1,14 @@
+# =============================================================================
+# ILLUSTRATIVE DEMO CUTOFFS. NOT CLINICAL VALUES.
+# The assay below is fictional. Real cutoffs come from the cleared/approved
+# assay labeling and your validation dossier. Replace before any real use and
+# put the file under change control (see docs/governance.md).
+# =============================================================================
+disclaimer: "Illustrative demo values for a fictional assay. Not for clinical use."
+assays:
+  demo_ptau217_ratio:
+    description: "Fictional plasma p-tau217 to Abeta42 ratio assay (demonstration only)"
+    unit: "ratio"
+    lower_cutoff: 0.30
+    upper_cutoff: 0.60
+    intended_population: "Symptomatic adults evaluated in specialty or primary care"

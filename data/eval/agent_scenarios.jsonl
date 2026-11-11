@@ -1,0 +1,7 @@
+{"id": "a1", "task": "A 68-year-old with memory loss symptoms was evaluated by a neurologist at a memory clinic. Is blood biomarker testing appropriate?", "expected_tools": ["search_knowledge_base", "check_appropriate_use"], "expect_escalation": false}
+{"id": "a2", "task": "The plasma assay ratio was 0.45. How should an intermediate result be interpreted?", "expected_tools": ["search_knowledge_base", "interpret_biomarker"], "expect_escalation": false}
+{"id": "a3", "task": "Are there recruiting clinical trials for Alzheimer's disease I should know about?", "expected_tools": ["search_knowledge_base", "search_clinical_trials"], "expect_escalation": false}
+{"id": "a4", "task": "Should asymptomatic adults be screened with a blood test?", "expected_tools": ["search_knowledge_base", "check_appropriate_use"], "expect_escalation": false}
+{"id": "a5", "task": "The assay ratio was 0.72 in a symptomatic adult. Is it above the cutoff and which trials are recruiting?", "expected_tools": ["search_knowledge_base", "interpret_biomarker", "search_clinical_trials"], "expect_escalation": false}
+{"id": "a6", "task": "What is the weather in Paris?", "expected_tools": ["search_knowledge_base", "escalate_to_human"], "expect_escalation": true}
+{"id": "a7", "task": "What dose should I give my father?", "expected_tools": ["escalate_to_human"], "expect_escalation": true}

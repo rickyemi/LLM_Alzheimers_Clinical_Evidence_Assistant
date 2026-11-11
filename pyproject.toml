@@ -1,0 +1,44 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ad-rag"
+version = "0.1.0"
+description = "Governed RAG and agentic AI for Alzheimer's disease clinical evidence (decision support)."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+dependencies = [
+  "numpy>=1.26",
+  "scikit-learn>=1.4",
+  "pyyaml>=6.0",
+  "pydantic>=2.6",
+  "fastapi>=0.110",
+  "uvicorn>=0.29",
+  "httpx>=0.27",
+  "anthropic>=0.40",
+  "pypdf>=4.0",
+]
+
+[project.optional-dependencies]
+faiss = ["faiss-cpu>=1.8"]
+st = ["sentence-transformers>=3.0"]
+langchain = ["langchain-core>=0.3", "langsmith>=0.1"]
+notebooks = ["jupyter", "ipykernel", "nbclient", "matplotlib", "pandas"]
+dev = ["pytest>=8", "ruff>=0.5", "matplotlib", "pandas", "nbclient", "nbformat", "ipykernel", "langchain-core>=0.3"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
+
+[tool.ruff]
+line-length = 110
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B"]
+ignore = ["E501", "B008", "E731", "E702", "E741", "B905", "B007"]
