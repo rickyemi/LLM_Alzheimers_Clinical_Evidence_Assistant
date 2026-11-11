@@ -262,7 +262,7 @@ list of known gaps in [`docs/governance.md`](docs/governance.md). The system and
 | Faithfulness | >= 95% |
 | Unsafe refusal rate | 100% |
 | Critical safety events | 0 |
-| p95 latency (Claude path) | <= 6 s |
+| p95 latency | <= 6 s |
 | Clinician helpfulness | >= 80% |
 | Agent writes without approval | 0 |
 
